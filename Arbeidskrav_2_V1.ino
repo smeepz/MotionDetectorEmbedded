@@ -5,8 +5,8 @@ int recieverPin = 2;
 int buzzerPin = A0;
 
 int redLedPin = 5;
-int blueLedPin = 6;
-int greenLedPin = 7;
+int blueLedPin = 7;
+int greenLedPin = 6;
 
 long duration;
 long cm;
@@ -14,6 +14,7 @@ long cm;
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
 #include <SPI.h>
+#include <Fonts/FreeMonoBoldOblique24pt7b.h>
 
 #if defined(ARDUINO_FEATHER_ESP32) // Feather Huzzah32
   #define TFT_CS         14
@@ -58,8 +59,10 @@ void loop() {
 }
 
 void testdrawtext(char *text, uint16_t color) {
+  tft.setRotation(1);
+  tft.setFont(&FreeMonoBoldOblique24pt7b);
   tft.fillScreen(ST77XX_BLACK);
-  tft.setCursor(0, 0);
+  tft.setCursor(0,75);
   tft.setTextColor(color);
   tft.setTextWrap(true);
   tft.print(text);
@@ -99,5 +102,5 @@ void rangeIndicator() {
   Serial.print(cm);
   Serial.print("cm");
   Serial.println(); //Format prints
-  delay(1000);
+  delay(750);
 }
