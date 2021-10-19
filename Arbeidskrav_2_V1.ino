@@ -1,30 +1,42 @@
 
-int pirSensorPin = 4;
 int transmitterPin = 3;
 int recieverPin = 2;
+
+int buzzerPin = 4;
+
+int redLedPin = 13;
+int blueLedPin = 12;
+int greenLedPin = 11;
+
 long duration;
 long cm;
-int ledPin = 13;
-int buzzerPin = 12;
 
 void setup() {
-  
+
   Serial.begin(9600);
-  
+
   pinMode(transmitterPin, OUTPUT);
-  
   pinMode(recieverPin, INPUT);
-  pinMode(pirSensorPin, INPUT);
-  
-  pinMode(ledPin, OUTPUT);
+
+
+  pinMode(redLedPin, OUTPUT);
+  pinMode(blueLedPin, OUTPUT);
+  pinMode(greenLedPin, OUTPUT);
+
   pinMode(buzzerPin, OUTPUT);
-  
+
 }
 
 void loop() {
 
 
   rangeIndicator();
+}
+
+void ledLightColor(int redValue, int greenValue, int blueValue) {
+    analogWrite(redLedPin, redValue);
+    analogWrite(greenLedPin, greenValue);
+    analogWrite(blueLedPin, blueValue);
 }
 
 void rangeIndicator() {
@@ -42,10 +54,10 @@ void rangeIndicator() {
 
   if (cm >= 150) {
     Serial.println("--------OK");
-    digitalWrite(ledPin, LOW);
+    ledLightColor(0, 255, 0);
   } else {
     Serial.println("--------!WARNING!");
-    digitalWrite(ledPin, HIGH);
+    ledLightColor(255, 0, 0);
     digitalWrite(buzzerPin, HIGH);
   }
 
