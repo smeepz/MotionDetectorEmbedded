@@ -3,10 +3,10 @@
 A very basic intruder alarm, utilizing the HC-SR04 ultrasonic sensor.
 The code is ready to be uploaded to the arduino as is.
 
-The code is set up to guard an entry, where the opening is atleast 150cm. This can be modified.
+The code is set up to guard an entry, where the opening is at least 150 cm. This can be modified.
 If something obstructs the ultrasonic waves, the buzzer will turn on, the RGB-LED will turn red, 
 and the TFT-display will say "INTRUDER" in red.
-If there is no obstructions, the RGB-LED will remain green and the TFT-display will say "OK"
+If there are no obstructions, the RGB-LED will remain green and the TFT-display will say "OK"
 
 Parts:
 - 1x HC-SR04
