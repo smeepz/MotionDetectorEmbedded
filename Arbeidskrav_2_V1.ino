@@ -2,6 +2,7 @@
 int transmitterPin = 3;
 int recieverPin = 2;
 
+<<<<<<< HEAD
 int buzzerPin = A0;
 
 int redLedPin = 5;
@@ -31,14 +32,27 @@ long cm;
 // For 1.14", 1.3", 1.54", 1.69", and 2.0" TFT with ST7789:
 Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
 
+=======
+int buzzerPin = 4;
+
+int redLedPin = 13;
+int blueLedPin = 12;
+int greenLedPin = 11;
+
+long duration;
+long cm;
+>>>>>>> 996dac376084f7fafdc7d2b5215107236b24ac3e
 
 void setup() {
 
   Serial.begin(9600);
 
+<<<<<<< HEAD
 // OR use this initializer (uncomment) if using a 1.14" 240x135 TFT:
   tft.init(135, 240);           // Init ST7789 240x135
 
+=======
+>>>>>>> 996dac376084f7fafdc7d2b5215107236b24ac3e
   pinMode(transmitterPin, OUTPUT);
   pinMode(recieverPin, INPUT);
 
@@ -57,6 +71,7 @@ void loop() {
   rangeIndicator();
 }
 
+<<<<<<< HEAD
 void testdrawtext(char *text, uint16_t color) {
   tft.fillScreen(ST77XX_BLACK);
   tft.setCursor(0, 0);
@@ -65,6 +80,8 @@ void testdrawtext(char *text, uint16_t color) {
   tft.print(text);
 }
 
+=======
+>>>>>>> 996dac376084f7fafdc7d2b5215107236b24ac3e
 void ledLightColor(int redValue, int greenValue, int blueValue) {
     analogWrite(redLedPin, redValue);
     analogWrite(greenLedPin, greenValue);
@@ -87,12 +104,18 @@ void rangeIndicator() {
   if (cm >= 150) {
     Serial.println("--------OK");
     ledLightColor(0, 255, 0);
+<<<<<<< HEAD
     testdrawtext("OK", ST77XX_GREEN);
     digitalWrite(buzzerPin, LOW);
   } else {
     Serial.println("--------!WARNING!");
     ledLightColor(255, 0, 0);
     testdrawtext("INTRUDER", ST77XX_RED);
+=======
+  } else {
+    Serial.println("--------!WARNING!");
+    ledLightColor(255, 0, 0);
+>>>>>>> 996dac376084f7fafdc7d2b5215107236b24ac3e
     digitalWrite(buzzerPin, HIGH);
   }
 
