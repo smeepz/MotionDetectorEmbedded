@@ -65,7 +65,7 @@ void setup() {
 void loop() {
 
   rangeIndicator();
-  delay(2000);
+  delay(500);
 }
 
 void drawText(char *text, uint16_t color) {
@@ -119,7 +119,6 @@ void rangeIndicator() {
     drawText(bufAlert, ST77XX_RED);
     digitalWrite(buzzerPin, HIGH);
   }
-  delay(750);
 }
 
 char printDateTime(const RtcDateTime& dt)
