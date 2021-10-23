@@ -4,16 +4,21 @@ A very basic intruder alarm, utilizing the HC-SR04 ultrasonic sensor.
 The code is ready to be uploaded to the arduino as is.
 
 Dokumentasjon/Beskrivelse av virkemåte:
+
 Pseudo oppkobling:
+
 SR04-sensoren skal sende ut trigger-signal og lytte på ekko for å gjøre en avstandsmåling for inngangen alarmen skal «vokte». Her setter jeg avstanden til å være 150cm og jeg ønsker å varsle ved å gi strøm til en buzzer som igjen vil gi fra seg en alarmerende lyd, dersom det er noen eller noe som «forstyrrer» lydsignalene.
 Jeg setter det også opp slik at en RGB-LED-katode vil lyse rødt dersom enheten alarmerer, og grønt dersom alt er greit.
+
 Det er også koblet opp en DS3231 i2c RTC modul, som vil kunne gi real time-utlesing av tid til Arduinoen. Denne har også et batteri for å kunne holde styr på klokken (opptil 8 år med riktig batteri ifølge forelesning 8), selv om Arduinoen er koblet fra en strømkilde, på samme måte som et BIOS-batteri i en PC, eller batterier i gamle GBC-spill.
+
 Live klokkeslett skal vises på TFT-skjermen og skjermen skal lese ut «OK» i grønt med klokkeslett foran dersom alarmen ikke er utløst, og «ALERT»  i rødt med klokkeslett foran dersom noe forstyrrer avstanden og den blir lavere enn 150cm.
+
 Komponenter brukt: 
+
 -1x Arduino (Det er brukt en Arduino UNO rev. 3)
 -1x Adafruit 1.14" 240x135 Color TFT Display
-
- -1x Generic buzzer 
+-1x Generic buzzer 
 -1x Breadboard 
 -Div. hann-til-hann-kabler 
 -1x RGB-LED katode 
@@ -22,49 +27,58 @@ Komponenter brukt:
 -1x DS3231 I2C RTC modul
 
 Oppkobling:
+
 Kobling av TFT-skjerm
-Vin er koblet til 5V på Arduino via breadboard.
-GND er koblet til jord på Arduino via breadboard
-SCK er koblet til digital pin 13 på Arduino via breadboard
-MISO er koblet til digital pin 12 på Arduino via breadboard
-MOSI er koblet til digital pin 11 på Arduino via breadboard
-TFTCS er koblet til digital pin 10 på Arduino via breadboard
-DC er koblet til digital pin 8 på Arduino via breadboard
-SOCS er koblet til digital pin 4 på Arduino via breadboard
+
+- VIN er koblet til 5V på Arduino via breadboard.
+- GND er koblet til jord på Arduino via breadboard
+- SCK er koblet til digital pin 13 på Arduino via breadboard
+- MISO er koblet til digital pin 12 på Arduino via breadboard
+- MOSI er koblet til digital pin 11 på Arduino via breadboard
+- TFTCS er koblet til digital pin 10 på Arduino via breadboard
+- DC er koblet til digital pin 8 på Arduino via breadboard
+- SOCS er koblet til digital pin 4 på Arduino via breadboard
 
 Kobling av HC-SR04
-VCC er koblet til 5V på Arduino via breadboard
-GND er koblet til jord på Arduino via breadboard
-TRIG er koblet til digital pin 3 på Arduino via breadboard
-ECHO er koblet til digital pin 2 på Arduino via breadboard
+
+- VCC er koblet til 5V på Arduino via breadboard
+- GND er koblet til jord på Arduino via breadboard
+- TRIG er koblet til digital pin 3 på Arduino via breadboard
+- ECHO er koblet til digital pin 2 på Arduino via breadboard
 
 Kobling av buzzer
-PWP er koblet til Analog port 0(A0) på Arduino via breadboard
-GND er koblet til jord på Arduino via breadboard
+
+- PWP er koblet til Analog port 0(A0) på Arduino via breadboard
+- GND er koblet til jord på Arduino via breadboard
 
 
 
 
 Kobling av RGB-LED katode 
-R(rød) er koblet til en 220ohm motstand på breadboard for så å gå videre til digital pin 5 på Arduino
-G(grønn) er koblet til en 220ohm motstand på breadboard for så å gå videre til digital pin 6 på Arduino
-B(blå) er koblet til en 220ohm motstand på breadboard for så å gå videre til digital pin 7 på Arduino
-Gnd er koblet til jord på Arduino via breadboard
+
+- R(rød) er koblet til en 220ohm motstand på breadboard for så å gå videre til digital pin 5 på Arduino
+- G(grønn) er koblet til en 220ohm motstand på breadboard for så å gå videre til digital pin 6 på Arduino
+- B(blå) er koblet til en 220ohm motstand på breadboard for så å gå videre til digital pin 7 på Arduino
+- Gnd er koblet til jord på Arduino via breadboard
 
 Kobling av DS3231
-GND er koblet til jord på Arduino via breadboard
-VCC er koblet til 5V på Arduino via breadboard
-SDA er koblet til analog input 4(A4) på Arduino via breadboard
-SCL er koblet til analog input 5(A5) på Arduino via breadboard
-CR2025 batteri er koblet til enheten
+
+- GND er koblet til jord på Arduino via breadboard
+- VCC er koblet til 5V på Arduino via breadboard
+- SDA er koblet til analog input 4(A4) på Arduino via breadboard
+- SCL er koblet til analog input 5(A5) på Arduino via breadboard
+- CR2025 batteri er koblet til enheten
 
 
 Virkemåten slik jeg forstår den:
+
 Det er en SR04 ultrasonisk sensor som sender ut og mottar ultrasoniske lydsignaler (trigger og echo) og man kan bruke den verdien man leser fra sensoren med en matematisk konvertering for å måle en avstand. Denne sensoren har en relativt kort rekkevidde, men er relativt nøyaktig for avstanden som er brukt i dette prosjektet (opptil 150cm).
+
 Denne målingen er ikke helt samtid da det går noen ms hver vei og lyden beveger seg i lydens hastighet, og ikke like rask som f.eks. Lysets hastighet. I dette prosjektet mener jeg fortsatt at denne vil fungere helt greit.
 
 
 TFT-skjermen fra Adafruit er koblet opp med :
+
 -5v inn
 -jording
 -SCK som er klokke-input signalet
